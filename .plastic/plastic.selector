@@ -1,0 +1,3 @@
+rep "MiniComando@cSuaznabar@cloud"
+  path "/"
+    smartbranch "/main"
