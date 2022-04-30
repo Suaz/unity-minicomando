@@ -4,28 +4,49 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-   
-    float distance = 1f;
-    public Transform target;
-    float mouseX, mouseY;
-    // Start is called before the first frame update
-    void Start()
+    float speed = 24f;
+    float rotationSpeed = 32f;
+    void Update()
     {
+
+        float updatedSpeed = rotationSpeed * Time.deltaTime;
+
         
+
+
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    transform.Rotate(0f, updatedSpeed, 0f, Space.World);
+        //    transform.Rotate(-updatedSpeed, 0f, 0f, Space.Self);
+
+        //    //transform.Rotate(0,rotationSpeed * Time.deltaTime, 0,Space.World);
+        //}
+
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    transform.Rotate(0f, -updatedSpeed, 0f, Space.World);
+        //    transform.Rotate(updatedSpeed, 0f, 0f, Space.Self);
+
+        //    //transform.Rotate(0, - rotationSpeed * Time.deltaTime, 0,Space.World);
+        //}
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(speed * Time.deltaTime, 0, 0, Space.World);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(-speed * Time.deltaTime, 0, 0, Space.World);
+            
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(0,0, -speed * Time.deltaTime,  Space.World);
+        }
     }
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-       
-
-        Vector3 newPosition = target.position;
-        newPosition.y += 1.5f;
-        //newPosition.y *=-1;
-        Vector3 angle = transform.eulerAngles;
-        angle.y += Input.GetAxis("Mouse X");
-        angle.x += Input.GetAxis("Mouse Y");
-        transform.eulerAngles = angle;
-        transform.position = newPosition - transform.forward * distance;
-    }
 }

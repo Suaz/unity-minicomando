@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     float velocitySmoothingX, velocitySmoothingZ;
 
-    int currentPlayer = 0;
     public int characterKey;
 
     Animator animator;
@@ -41,10 +40,10 @@ public class PlayerController : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocitySmoothingX, smoothTime);
         velocity.z = Mathf.SmoothDamp(velocity.z, targetVelocityZ, ref velocitySmoothingZ, smoothTime);
         velocity.y -= gravity * Time.deltaTime;
-        if (controller.isGrounded && Input.GetButtonDown("Jump"))
-        {
-            velocity.y = jumpForce;
-        }
+        //if (controller.isGrounded && Input.GetButtonDown("Jump"))
+        //{
+        //    velocity.y = jumpForce;
+        //}
         controller.Move(velocity * Time.deltaTime);
 
         animator.SetFloat("movementSpeed", input.magnitude);
@@ -52,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
         float yPivotRotation = camera.transform.eulerAngles.y;
         transform.rotation = Quaternion.Euler(0, yPivotRotation, 0);
+
+        //if (controller.isGrounded)
+        //    velocity.y = 0;
 
     }
     
